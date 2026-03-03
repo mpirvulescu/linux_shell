@@ -1,0 +1,13 @@
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/main.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_format_all.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_tidy_db.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_tidy_all.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_analyze_all.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_cppcheck_all.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/template-c_clang_sa_all.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/edit_cache.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/rebuild_cache.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/list_install_components.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/install.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/install/local.dir
+/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/install/strip.dir

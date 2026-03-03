@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/markp/Public/BCIT/COMP4951/assignment2/source/build",
+  "command": "/usr/bin/clang  -I/home/markp/Public/BCIT/COMP4951/assignment2/source/include -isystem /usr/local/include -g -std=c17 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -Werror -o CMakeFiles/main.dir/src/client_main.c.o -c /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c",
+  "file": "/home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c",
+  "output": "CMakeFiles/main.dir/src/client_main.c.o"
+}
+]

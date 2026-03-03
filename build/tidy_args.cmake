@@ -1,0 +1,14 @@
+set(P101_TIDY_ARGS_LIST
+  "-header-filter=^(/home/markp/Public/BCIT/COMP4951/assignment2/source/src|/home/markp/Public/BCIT/COMP4951/assignment2/source/include)/.*"
+  "-checks=*,-llvmlibc-*,-clang-diagnostic-unused-macros,-llvmlibc-restrict-system-libc-headers,-altera-struct-pack-align,-readability-identifier-length,-altera-unroll-loops,-cppcoreguidelines-init-variables,-cert-err33-c,-bugprone-easily-swappable-parameters,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,-altera-id-dependent-backward-branch,-concurrency-mt-unsafe,-misc-unused-parameters,-hicpp-signed-bitwise,-google-readability-todo,-cert-msc30-c,-readability-function-cognitive-complexity,-clang-analyzer-security.insecureAPI.strcpy,-cert-env33-c,-android-cloexec-accept,-misc-include-cleaner,-llvm-header-guard,-google-readability-casting,-readability-redundant-casting"
+  "-warnings-as-errors=*"
+  "-quiet"
+  "--format-style=file"
+  "--extra-arg-before=-D_POSIX_C_SOURCE=200809L"
+  "--extra-arg-before=-D_XOPEN_SOURCE=700"
+  "--extra-arg-before=-D_GNU_SOURCE"
+  "--extra-arg-before=-D_DARWIN_C_SOURCE"
+  "--extra-arg-before=-I/home/markp/Public/BCIT/COMP4951/assignment2/source/include"
+  "--extra-arg-before=-isystem"
+  "--extra-arg-before=/usr/local/include"
+)
