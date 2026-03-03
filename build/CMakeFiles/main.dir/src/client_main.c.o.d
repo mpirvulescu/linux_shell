@@ -45,4 +45,7 @@ CMakeFiles/main.dir/src/client_main.c.o: \
   /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
   /usr/include/bits/stdlib-float.h /usr/include/string.h \
   /usr/include/bits/types/locale_t.h \
-  /usr/include/bits/types/__locale_t.h
+  /usr/include/bits/types/__locale_t.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/unistd_ext.h

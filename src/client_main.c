@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 static void           parse_arguments(client_context *ctx);
 static void           handle_arguments(client_context *ctx);
@@ -14,14 +15,14 @@ static in_port_t      parse_in_port_t(client_context *ctx);
 _Noreturn static void usage(const client_context *ctx);
 _Noreturn static void quit(const client_context *ctx);
 static void           convert_address(client_context *ctx);
-static int            socket_create();
-static void           socket_connect();
+static void           socket_create(client_context *ctx);
+static void           socket_connect(client_context *ctx);
 /*
     all code once connected to server
     happens here, after connection established
 */
-static void shutdown_socket();
-static void socket_close();
+static void shutdown_socket(client_context *ctx);
+static void socket_close(client_context *ctx);
 
 int main(const int argc, char **argv)
 {
@@ -33,12 +34,12 @@ int main(const int argc, char **argv)
     parse_arguments(&ctx);
     handle_arguments(&ctx);
     convert_address(&ctx);
-    // sockfd = socket_create(&ctx);
-    // socket_connect(&ctx);
-    // // add more client specific code here
+    socket_create(&ctx);
+    socket_connect(&ctx);
+    // add more client specific code here
 
-    // shutdown_socket(&ctx);
-    // socket_close(&ctx);
+    shutdown_socket(&ctx);
+    socket_close(&ctx);
 }
 
 static client_context init_context(void)
@@ -191,19 +192,68 @@ static void convert_address(client_context *ctx)
     }
 }
 
-static int socket_create() {
+static void socket_create(client_context *ctx)
+{
     ctx->sockfd = socket(ctx->addr.ss_family, SOCK_STREAM, 0);
-    
+
+    if(ctx->sockfd == -1)
+    {
+        ctx->exit_message = "Socket creation failed";
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
 }
 
-// static void socket_connect() {
+static void socket_connect(client_context *ctx)
+{
+    char      addr_str[INET_ADDRSTRLEN];
+    socklen_t addr_len;
+    in_port_t net_port = htons(ctx->port);
 
-// }
+    if(ctx->addr.ss_family == AF_INET)
+    {
+        struct sockaddr_in *ipv4_addr = (struct sockaddr_in *)&ctx->addr;
+        addr_len                      = sizeof(*ipv4_addr);
+        ipv4_addr->sin_port           = net_port;
 
-// static void shutdown_socket() {
+        inet_ntop(AF_INET, &(ipv4_addr->sin_addr), addr_str, sizeof(addr_str));
+    }
+    else
+    {
+        static char error_buf[ERROR_MESSAGE_BUFFER];
+        snprintf(error_buf, sizeof(error_buf), "Error: addr->ss_family must be AF_INET or AF_INET6, was: %d\n", ctx->addr.ss_family);
 
-// }
+        ctx->exit_message = error_buf;
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
 
-// static void socket_close() {
+    if(connect(ctx->sockfd, (struct sockaddr *)&ctx->addr, addr_len) == -1)
+    {
+        ctx->exit_message = "Error: connect failed";
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
 
-// }
+    printf("Connected to %s:%u\n", addr_str, ctx->port);
+}
+
+static void shutdown_socket(client_context *ctx)
+{
+    if(shutdown(ctx->sockfd, SHUT_WR) == -1)
+    {
+        ctx->exit_message = "Error shutting down socket";
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
+}
+
+static void socket_close(client_context *ctx)
+{
+    if(close(ctx->sockfd) == -1)
+    {
+        ctx->exit_message = "Error closing socket";
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
+}
