@@ -21,6 +21,12 @@ static void           socket_connect(client_context *ctx);
     all code once connected to server
     happens here, after connection established
 */
+static void show_prompt(void);
+static void read_user_input(client_context *ctx);
+static void send_request(client_context *ctx);
+static void recv_request(client_context *ctx);
+static void print_output(client_context *ctx);
+
 static void shutdown_socket(client_context *ctx);
 static void socket_close(client_context *ctx);
 
@@ -37,6 +43,19 @@ int main(const int argc, char **argv)
     socket_create(&ctx);
     socket_connect(&ctx);
     // add more client specific code here
+    while(ctx.exit_code == EXIT_SUCCESS) {
+        show_prompt();
+        read_user_input(&ctx);
+
+        //if input empty, loop back to beginning
+        if (ctx.user_input[0] == '\0') {
+                continue; 
+            }
+
+        send_request(&ctx);
+        recv_request(&ctx);
+        print_output(&ctx);
+    }
 
     shutdown_socket(&ctx);
     socket_close(&ctx);
@@ -238,6 +257,31 @@ static void socket_connect(client_context *ctx)
     printf("Connected to %s:%u\n", addr_str, ctx->port);
 }
 
+static void show_prompt(void) {
+    printf(">");
+    fflush(stdout);
+}
+
+static void read_user_input(client_context *ctx) {
+    //EOF handling
+    if(fgets(ctx->user_input, USER_MESSAGE_BUFFER, stdin) == NULL) {
+        ctx->exit_code = EXIT_SUCCESS;
+        quit(ctx);
+    }
+
+    //remove newline
+    ctx->user_input[strcspn(ctx->user_input, "\n")] = '\0';
+
+    if (ctx->user_input[0] == '\0') {
+        return; // Just return to main() so the while loop runs again
+    }
+
+    if (strcmp(ctx->user_input, "exit") == 0) {
+        ctx->exit_code = EXIT_SUCCESS;
+        quit(ctx); // client closes socket, server sees 0 bytes, server closes
+    }
+}
+
 
 
 static void shutdown_socket(client_context *ctx)
@@ -249,13 +293,6 @@ static void shutdown_socket(client_context *ctx)
         quit(ctx);
     }
 }
-
-static void show_prompt(void) {
-    printf(">");
-    fflush(stdout);
-}
-
-
 
 static void socket_close(client_context *ctx)
 {

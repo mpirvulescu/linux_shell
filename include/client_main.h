@@ -12,6 +12,7 @@ enum {
 
 enum {
     ERROR_MESSAGE_BUFFER = 64
+    USER_MESSAGE_BUFFER = 100;
 };
 
 enum {
@@ -31,6 +32,8 @@ typedef struct {
     in_port_t port;
     struct sockaddr_storage addr;
     int sockfd;
+
+    char user_input[USER_MESSAGE_BUFFER]
 } client_context;
 
 
