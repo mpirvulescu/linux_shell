@@ -24,7 +24,7 @@ static void           socket_connect(client_context *ctx);
 static void show_prompt(void);
 static void read_user_input(client_context *ctx);
 static void send_request(client_context *ctx);
-static void recv_request(client_context *ctx);
+static void recv_response(client_context *ctx);
 static void print_output(client_context *ctx);
 
 static void shutdown_socket(client_context *ctx);
@@ -43,17 +43,19 @@ int main(const int argc, char **argv)
     socket_create(&ctx);
     socket_connect(&ctx);
     // add more client specific code here
-    while(ctx.exit_code == EXIT_SUCCESS) {
+    while(ctx.exit_code == EXIT_SUCCESS)
+    {
         show_prompt();
         read_user_input(&ctx);
 
-        //if input empty, loop back to beginning
-        if (ctx.user_input[0] == '\0') {
-                continue; 
-            }
+        // if input empty, loop back to beginning
+        if(ctx.user_input[0] == '\0')
+        {
+            continue;
+        }
 
         send_request(&ctx);
-        recv_request(&ctx);
+        recv_response(&ctx);
         print_output(&ctx);
     }
 
@@ -257,32 +259,117 @@ static void socket_connect(client_context *ctx)
     printf("Connected to %s:%u\n", addr_str, ctx->port);
 }
 
-static void show_prompt(void) {
+static void show_prompt(void)
+{
     printf(">");
     fflush(stdout);
 }
 
-static void read_user_input(client_context *ctx) {
-    //EOF handling
-    if(fgets(ctx->user_input, USER_MESSAGE_BUFFER, stdin) == NULL) {
-        ctx->exit_code = EXIT_SUCCESS;
+static void read_user_input(client_context *ctx)
+{
+    // EOF handling
+    if(fgets(ctx->user_input, USER_MESSAGE_BUFFER, stdin) == NULL)
+    {
+        ctx->exit_message = "EOF detected\n";
+        ctx->exit_code    = EXIT_SUCCESS;
         quit(ctx);
     }
 
-    //remove newline
+    // remove newline
     ctx->user_input[strcspn(ctx->user_input, "\n")] = '\0';
 
-    if (ctx->user_input[0] == '\0') {
-        return; // Just return to main() so the while loop runs again
+    if(ctx->user_input[0] == '\0')
+    {
+        return;    // just return to main so the while loop runs again
     }
 
-    if (strcmp(ctx->user_input, "exit") == 0) {
-        ctx->exit_code = EXIT_SUCCESS;
-        quit(ctx); // client closes socket, server sees 0 bytes, server closes
+    if(strcmp(ctx->user_input, "exit") == 0)
+    {
+        ctx->exit_message = "User has called exit\n";
+        ctx->exit_code    = EXIT_SUCCESS;
+        quit(ctx);    // client closes socket, server sees 0 bytes, server closes
     }
 }
 
+static void send_request(client_context *ctx)
+{
+    size_t length = strlen(ctx->user_input) + 1;    // Include null terminator
 
+    // this is like a full send (full write but with send)
+    size_t total_sent = 0;
+
+    while(total_sent < length)
+    {
+        ssize_t sent;
+
+        sent = send(ctx->sockfd, ctx->user_input + total_sent, length - total_sent, MSG_NOSIGNAL);
+
+        if(sent == -1)
+        {
+            if(errno == EINTR)
+            {
+                continue;
+            }
+            if(errno == EPIPE)
+            {
+                ctx->exit_message = "Error: Server disconnected\n";
+            }
+            else
+            {
+                ctx->exit_message = "Error: Failed to send data to server\n";
+            }
+            ctx->exit_code = EXIT_FAILURE;
+            quit(ctx);
+        }
+        total_sent += (size_t)sent;
+    }
+}
+
+static void recv_response(client_context *ctx)
+{
+    while(1)
+    {
+        // clear buffer to ensure no leftover data from previous commands
+        memset(ctx->server_output, 0, sizeof(ctx->server_output));
+
+        // recv() returns the number of bytes actually read
+        ctx->bytes_received = recv(ctx->sockfd, ctx->server_output, sizeof(ctx->server_output), 0);
+
+        if(ctx->bytes_received == 0)
+        {
+            // FIN signal, server is done
+            ctx->exit_message = "\nConnection closed by server.\n";
+            ctx->exit_code    = EXIT_SUCCESS;
+            quit(ctx);
+        }
+
+        if(ctx->bytes_received == -1)
+        {
+            if(errno == EINTR)
+            {
+                return;    // interrupted by  signal, main loop will try again
+            }
+            ctx->exit_message = "Error: Failed to receive data from server.\n";
+            ctx->exit_code    = EXIT_FAILURE;
+            quit(ctx);
+        }
+
+        print_output(ctx);
+
+        if(ctx->server_output[ctx->bytes_received - 1] == '\0')
+        {
+            break;
+        }
+    }
+}
+
+static void print_output(client_context *ctx)
+{
+    if(ctx->bytes_received > 0)
+    {
+        write(STDOUT_FILENO, ctx->server_output, (size_t)ctx->bytes_received);
+    }
+}
 
 static void shutdown_socket(client_context *ctx)
 {

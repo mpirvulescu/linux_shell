@@ -11,8 +11,9 @@ enum {
 };
 
 enum {
-    ERROR_MESSAGE_BUFFER = 64
-    USER_MESSAGE_BUFFER = 100;
+    ERROR_MESSAGE_BUFFER = 64,
+    USER_MESSAGE_BUFFER = 100,
+    SERVER_RESPONSE_BUFFER = 1024
 };
 
 enum {
@@ -33,7 +34,9 @@ typedef struct {
     struct sockaddr_storage addr;
     int sockfd;
 
-    char user_input[USER_MESSAGE_BUFFER]
+    char user_input[USER_MESSAGE_BUFFER];
+    char server_output[SERVER_RESPONSE_BUFFER];
+    ssize_t bytes_received;
 } client_context;
 
 
