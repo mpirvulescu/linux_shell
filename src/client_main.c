@@ -238,6 +238,8 @@ static void socket_connect(client_context *ctx)
     printf("Connected to %s:%u\n", addr_str, ctx->port);
 }
 
+
+
 static void shutdown_socket(client_context *ctx)
 {
     if(shutdown(ctx->sockfd, SHUT_WR) == -1)
@@ -247,6 +249,13 @@ static void shutdown_socket(client_context *ctx)
         quit(ctx);
     }
 }
+
+static void show_prompt(void) {
+    printf(">");
+    fflush(stdout);
+}
+
+
 
 static void socket_close(client_context *ctx)
 {
