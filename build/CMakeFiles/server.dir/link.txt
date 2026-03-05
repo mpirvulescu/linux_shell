@@ -1,0 +1,1 @@
+/usr/bin/gcc -g -Wl,--dependency-file=CMakeFiles/server.dir/link.d CMakeFiles/server.dir/src/server/server_main.c.o -o server   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib:

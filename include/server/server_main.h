@@ -14,11 +14,17 @@ enum {
     ERROR_MESSAGE_BUFFER = 64,
     USER_MESSAGE_BUFFER = 100,
     SERVER_RESPONSE_BUFFER = 1024
+    PATH
 };
 
 enum {
     LOWEST_PORT_POSSIBLE = 1024,
     HIGHEST_PORT_POSSIBLE = 65535
+};
+
+enum {
+    MAX_CONNECTIONS = 5,
+    MAX_NUM_CHILDREN = 8;
 };
 
 typedef struct {
@@ -32,6 +38,7 @@ typedef struct {
     in_port_t port;
     struct sockaddr_storage addr;
     int sockfd;
+    int clientfd;
 
     char user_input[USER_MESSAGE_BUFFER];
     char server_output[SERVER_RESPONSE_BUFFER];

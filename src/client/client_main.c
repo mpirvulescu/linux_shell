@@ -327,40 +327,33 @@ static void send_request(client_context *ctx)
 
 static void recv_response(client_context *ctx)
 {
-    while(1)
+    // clear buffer to ensure no leftover data from previous commands
+    memset(ctx->server_output, 0, sizeof(ctx->server_output));
+
+    // recv() returns the number of bytes actually read
+    ctx->bytes_received = recv(ctx->sockfd, ctx->server_output, sizeof(ctx->server_output), 0);
+
+    if(ctx->bytes_received == 0)
     {
-        // clear buffer to ensure no leftover data from previous commands
-        memset(ctx->server_output, 0, sizeof(ctx->server_output));
-
-        // recv() returns the number of bytes actually read
-        ctx->bytes_received = recv(ctx->sockfd, ctx->server_output, sizeof(ctx->server_output), 0);
-
-        if(ctx->bytes_received == 0)
-        {
-            // FIN signal, server is done
-            ctx->exit_message = "\nConnection closed by server.\n";
-            ctx->exit_code    = EXIT_SUCCESS;
-            quit(ctx);
-        }
-
-        if(ctx->bytes_received == -1)
-        {
-            if(errno == EINTR)
-            {
-                return;    // interrupted by  signal, main loop will try again
-            }
-            ctx->exit_message = "Error: Failed to receive data from server.\n";
-            ctx->exit_code    = EXIT_FAILURE;
-            quit(ctx);
-        }
-
-        print_output(ctx);
-
-        if(ctx->server_output[ctx->bytes_received - 1] == '\0')
-        {
-            break;
-        }
+        // FIN signal, server is done
+        ctx->exit_message = "\nConnection closed by server.\n";
+        ctx->exit_code    = EXIT_SUCCESS;
+        quit(ctx);
     }
+
+    if(ctx->bytes_received == -1)
+    {
+        if(errno == EINTR)
+        {
+            return;    // interrupted by signal, main loop will try again
+        }
+        ctx->exit_message = "Error: Failed to receive data from server.\n";
+        ctx->exit_code    = EXIT_FAILURE;
+        quit(ctx);
+    }
+
+    // Only print output after receiving complete response
+    print_output(ctx);
 }
 
 static void print_output(client_context *ctx)

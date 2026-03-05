@@ -21,10 +21,10 @@ CLANG_FORMAT_NAME:FILEPATH=/usr/bin/clang-format
 CLANG_TIDY_NAME:FILEPATH=/usr/bin/clang-tidy
 
 //Path to a program.
-CMAKE_ADDR2LINE:FILEPATH=/usr/bin/llvm-addr2line
+CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/usr/bin/llvm-ar
+CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
@@ -40,16 +40,15 @@ CMAKE_CXX_CPPCHECK:STRING=
 CMAKE_C_CLANG_TIDY:STRING=
 
 //C compiler
-CMAKE_C_COMPILER:STRING=/usr/bin/clang
+CMAKE_C_COMPILER:STRING=/usr/bin/gcc
 
-//LLVM archiver
-CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/llvm-ar
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
 
-//`clang-scan-deps` dependency scanner
-CMAKE_C_COMPILER_CLANG_SCAN_DEPS:FILEPATH=/usr/bin/clang-scan-deps
-
-//Generate index for LLVM archive
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/llvm-ranlib
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
 
 CMAKE_C_CPPCHECK:STRING=
 
@@ -68,10 +67,10 @@ CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the C compiler during RELWITHDEBINFO builds.
 CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES:STRING=/usr/lib/clang/21/include;/usr/include
+CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES:STRING=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include;/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed;/usr/include
 
 //Path to a program.
-CMAKE_DLLTOOL:FILEPATH=/usr/bin/llvm-dlltool
+CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
 
 //Flags used by the linker during all build types.
 CMAKE_EXE_LINKER_FLAGS:STRING=
@@ -172,13 +171,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/usr/bin/llvm-nm
+CMAKE_NM:FILEPATH=/usr/bin/nm
 
 //Path to a program.
-CMAKE_OBJCOPY:FILEPATH=/usr/bin/llvm-objcopy
+CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/usr/bin/llvm-objdump
+CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
 CMAKE_PROJECT_COMPAT_VERSION:STATIC=
@@ -211,10 +210,10 @@ CMAKE_PROJECT_VERSION_PATCH:STATIC=0
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/usr/bin/llvm-ranlib
+CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
 
 //Path to a program.
-CMAKE_READELF:FILEPATH=/usr/bin/llvm-readelf
+CMAKE_READELF:FILEPATH=/usr/bin/readelf
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
@@ -264,7 +263,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/usr/bin/llvm-strip
+CMAKE_STRIP:FILEPATH=/usr/bin/strip
 
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
@@ -367,8 +366,6 @@ CMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest
 CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_AR
 CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_C_COMPILER_CLANG_SCAN_DEPS
-CMAKE_C_COMPILER_CLANG_SCAN_DEPS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
 CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS

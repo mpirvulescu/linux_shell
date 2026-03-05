@@ -162,17 +162,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named client
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+#=============================================================================
+# Target rules for targets named server
+
+# Build rule for target.
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
+
+# fast build rule for target.
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
 
 #=============================================================================
 # Target rules for targets named template-c_format_all
@@ -239,25 +252,12 @@ template-c_cppcheck_all/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/build
 .PHONY : template-c_cppcheck_all/fast
 
-#=============================================================================
-# Target rules for targets named template-c_clang_sa_all
-
-# Build rule for target.
-template-c_clang_sa_all: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 template-c_clang_sa_all
-.PHONY : template-c_clang_sa_all
-
-# fast build rule for target.
-template-c_clang_sa_all/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/build
-.PHONY : template-c_clang_sa_all/fast
-
 src/client/client_main.o: src/client/client_main.c.o
 .PHONY : src/client/client_main.o
 
 # target to build an object file
 src/client/client_main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client_main.c.o
 .PHONY : src/client/client_main.c.o
 
 src/client/client_main.i: src/client/client_main.c.i
@@ -265,7 +265,7 @@ src/client/client_main.i: src/client/client_main.c.i
 
 # target to preprocess a source file
 src/client/client_main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client_main.c.i
 .PHONY : src/client/client_main.c.i
 
 src/client/client_main.s: src/client/client_main.c.s
@@ -273,8 +273,32 @@ src/client/client_main.s: src/client/client_main.c.s
 
 # target to generate assembly for a file
 src/client/client_main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client_main.c.s
 .PHONY : src/client/client_main.c.s
+
+src/server/server_main.o: src/server/server_main.c.o
+.PHONY : src/server/server_main.o
+
+# target to build an object file
+src/server/server_main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server_main.c.o
+.PHONY : src/server/server_main.c.o
+
+src/server/server_main.i: src/server/server_main.c.i
+.PHONY : src/server/server_main.i
+
+# target to preprocess a source file
+src/server/server_main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server_main.c.i
+.PHONY : src/server/server_main.c.i
+
+src/server/server_main.s: src/server/server_main.c.s
+.PHONY : src/server/server_main.s
+
+# target to generate assembly for a file
+src/server/server_main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server_main.c.s
+.PHONY : src/server/server_main.c.s
 
 # Help Target
 help:
@@ -289,15 +313,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... template-c_analyze_all"
-	@echo "... template-c_clang_sa_all"
 	@echo "... template-c_cppcheck_all"
 	@echo "... template-c_format_all"
 	@echo "... template-c_tidy_all"
 	@echo "... template-c_tidy_db"
-	@echo "... main"
+	@echo "... client"
+	@echo "... server"
 	@echo "... src/client/client_main.o"
 	@echo "... src/client/client_main.i"
 	@echo "... src/client/client_main.s"
+	@echo "... src/server/server_main.o"
+	@echo "... src/server/server_main.i"
+	@echo "... src/server/server_main.s"
 .PHONY : help
 
 

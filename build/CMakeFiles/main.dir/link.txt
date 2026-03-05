@@ -1,1 +1,0 @@
-/usr/bin/clang -g -Xlinker --dependency-file=CMakeFiles/main.dir/link.d CMakeFiles/main.dir/src/client/client_main.c.o -o main   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib:

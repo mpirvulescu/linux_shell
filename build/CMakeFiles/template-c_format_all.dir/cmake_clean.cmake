@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   ".format/src/client/client_main.c.stamp"
+  ".format/src/server/server_main.c.stamp"
   "CMakeFiles/template-c_format_all"
 )
 

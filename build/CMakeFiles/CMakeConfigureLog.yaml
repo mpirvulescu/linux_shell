@@ -147,7 +147,7 @@ events:
       - "CMakeLists.txt:26 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler: /usr/bin/clang 
+      Compiler: /usr/bin/gcc 
       Build flags: 
       Id flags:  
       
@@ -157,7 +157,7 @@ events:
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
-      The C compiler identification is Clang, found in:
+      The C compiler identification is GNU, found in:
         /home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/4.2.3/CompilerIdC/a.out
       
   -
@@ -178,7 +178,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-ar"
       - "ar"
     candidate_directories:
       - "/usr/bin/"
@@ -189,7 +188,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-ar"
+    found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -218,7 +217,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-ranlib"
       - "ranlib"
     candidate_directories:
       - "/usr/bin/"
@@ -229,7 +227,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-ranlib"
+    found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -258,7 +256,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-strip"
       - "strip"
     candidate_directories:
       - "/usr/bin/"
@@ -269,7 +266,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-strip"
+    found: "/usr/bin/strip"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -298,7 +295,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "ld.lld"
       - "ld"
     candidate_directories:
       - "/usr/bin/"
@@ -309,15 +305,6 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    searched_directories:
-      - "/usr/bin/ld.lld"
-      - "/home/markp/.local/bin/ld.lld"
-      - "/usr/local/sbin/ld.lld"
-      - "/usr/local/bin/ld.lld"
-      - "/usr/lib/jvm/default/bin/ld.lld"
-      - "/usr/bin/site_perl/ld.lld"
-      - "/usr/bin/vendor_perl/ld.lld"
-      - "/usr/bin/core_perl/ld.lld"
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
@@ -347,7 +334,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-nm"
       - "nm"
     candidate_directories:
       - "/usr/bin/"
@@ -358,7 +344,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-nm"
+    found: "/usr/bin/nm"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -387,7 +373,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-objdump"
       - "objdump"
     candidate_directories:
       - "/usr/bin/"
@@ -398,7 +383,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-objdump"
+    found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -427,7 +412,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-objcopy"
       - "objcopy"
     candidate_directories:
       - "/usr/bin/"
@@ -438,7 +422,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-objcopy"
+    found: "/usr/bin/objcopy"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -467,7 +451,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-readelf"
       - "readelf"
     candidate_directories:
       - "/usr/bin/"
@@ -478,7 +461,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-readelf"
+    found: "/usr/bin/readelf"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -507,7 +490,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-dlltool"
       - "dlltool"
     candidate_directories:
       - "/usr/bin/"
@@ -518,7 +500,16 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-dlltool"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/home/markp/.local/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/lib/jvm/default/bin/dlltool"
+      - "/usr/bin/site_perl/dlltool"
+      - "/usr/bin/vendor_perl/dlltool"
+      - "/usr/bin/core_perl/dlltool"
+    found: false
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -547,7 +538,6 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-addr2line"
       - "addr2line"
     candidate_directories:
       - "/usr/bin/"
@@ -558,7 +548,7 @@ events:
       - "/usr/bin/site_perl/"
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
-    found: "/usr/bin/llvm-addr2line"
+    found: "/usr/bin/addr2line"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -620,12 +610,12 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "/usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake:26 (find_program)"
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
       - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
       - "CMakeLists.txt:26 (project)"
     mode: "program"
     variable: "CMAKE_C_COMPILER_AR"
-    description: "LLVM archiver"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
     settings:
       SearchFramework: "NEVER"
       SearchAppBundle: "NEVER"
@@ -635,10 +625,10 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-ar-21.1"
-      - "llvm-ar-21"
-      - "llvm-ar21"
-      - "llvm-ar"
+      - "gcc-ar-15.2"
+      - "gcc-ar-15"
+      - "gcc-ar15"
+      - "gcc-ar"
     candidate_directories:
       - "/usr/bin/"
       - "/home/markp/.local/bin/"
@@ -649,31 +639,31 @@ events:
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
     searched_directories:
-      - "/usr/bin/llvm-ar-21.1"
-      - "/home/markp/.local/bin/llvm-ar-21.1"
-      - "/usr/local/sbin/llvm-ar-21.1"
-      - "/usr/local/bin/llvm-ar-21.1"
-      - "/usr/lib/jvm/default/bin/llvm-ar-21.1"
-      - "/usr/bin/site_perl/llvm-ar-21.1"
-      - "/usr/bin/vendor_perl/llvm-ar-21.1"
-      - "/usr/bin/core_perl/llvm-ar-21.1"
-      - "/usr/bin/llvm-ar-21"
-      - "/home/markp/.local/bin/llvm-ar-21"
-      - "/usr/local/sbin/llvm-ar-21"
-      - "/usr/local/bin/llvm-ar-21"
-      - "/usr/lib/jvm/default/bin/llvm-ar-21"
-      - "/usr/bin/site_perl/llvm-ar-21"
-      - "/usr/bin/vendor_perl/llvm-ar-21"
-      - "/usr/bin/core_perl/llvm-ar-21"
-      - "/usr/bin/llvm-ar21"
-      - "/home/markp/.local/bin/llvm-ar21"
-      - "/usr/local/sbin/llvm-ar21"
-      - "/usr/local/bin/llvm-ar21"
-      - "/usr/lib/jvm/default/bin/llvm-ar21"
-      - "/usr/bin/site_perl/llvm-ar21"
-      - "/usr/bin/vendor_perl/llvm-ar21"
-      - "/usr/bin/core_perl/llvm-ar21"
-    found: "/usr/bin/llvm-ar"
+      - "/usr/bin/gcc-ar-15.2"
+      - "/home/markp/.local/bin/gcc-ar-15.2"
+      - "/usr/local/sbin/gcc-ar-15.2"
+      - "/usr/local/bin/gcc-ar-15.2"
+      - "/usr/lib/jvm/default/bin/gcc-ar-15.2"
+      - "/usr/bin/site_perl/gcc-ar-15.2"
+      - "/usr/bin/vendor_perl/gcc-ar-15.2"
+      - "/usr/bin/core_perl/gcc-ar-15.2"
+      - "/usr/bin/gcc-ar-15"
+      - "/home/markp/.local/bin/gcc-ar-15"
+      - "/usr/local/sbin/gcc-ar-15"
+      - "/usr/local/bin/gcc-ar-15"
+      - "/usr/lib/jvm/default/bin/gcc-ar-15"
+      - "/usr/bin/site_perl/gcc-ar-15"
+      - "/usr/bin/vendor_perl/gcc-ar-15"
+      - "/usr/bin/core_perl/gcc-ar-15"
+      - "/usr/bin/gcc-ar15"
+      - "/home/markp/.local/bin/gcc-ar15"
+      - "/usr/local/sbin/gcc-ar15"
+      - "/usr/local/bin/gcc-ar15"
+      - "/usr/lib/jvm/default/bin/gcc-ar15"
+      - "/usr/bin/site_perl/gcc-ar15"
+      - "/usr/bin/vendor_perl/gcc-ar15"
+      - "/usr/bin/core_perl/gcc-ar15"
+    found: "/usr/bin/gcc-ar"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -687,12 +677,12 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "/usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake:38 (find_program)"
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
       - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
       - "CMakeLists.txt:26 (project)"
     mode: "program"
     variable: "CMAKE_C_COMPILER_RANLIB"
-    description: "Generate index for LLVM archive"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
     settings:
       SearchFramework: "NEVER"
       SearchAppBundle: "NEVER"
@@ -702,10 +692,10 @@ events:
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "llvm-ranlib-21.1"
-      - "llvm-ranlib-21"
-      - "llvm-ranlib21"
-      - "llvm-ranlib"
+      - "gcc-ranlib-15.2"
+      - "gcc-ranlib-15"
+      - "gcc-ranlib15"
+      - "gcc-ranlib"
     candidate_directories:
       - "/usr/bin/"
       - "/home/markp/.local/bin/"
@@ -716,98 +706,31 @@ events:
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
     searched_directories:
-      - "/usr/bin/llvm-ranlib-21.1"
-      - "/home/markp/.local/bin/llvm-ranlib-21.1"
-      - "/usr/local/sbin/llvm-ranlib-21.1"
-      - "/usr/local/bin/llvm-ranlib-21.1"
-      - "/usr/lib/jvm/default/bin/llvm-ranlib-21.1"
-      - "/usr/bin/site_perl/llvm-ranlib-21.1"
-      - "/usr/bin/vendor_perl/llvm-ranlib-21.1"
-      - "/usr/bin/core_perl/llvm-ranlib-21.1"
-      - "/usr/bin/llvm-ranlib-21"
-      - "/home/markp/.local/bin/llvm-ranlib-21"
-      - "/usr/local/sbin/llvm-ranlib-21"
-      - "/usr/local/bin/llvm-ranlib-21"
-      - "/usr/lib/jvm/default/bin/llvm-ranlib-21"
-      - "/usr/bin/site_perl/llvm-ranlib-21"
-      - "/usr/bin/vendor_perl/llvm-ranlib-21"
-      - "/usr/bin/core_perl/llvm-ranlib-21"
-      - "/usr/bin/llvm-ranlib21"
-      - "/home/markp/.local/bin/llvm-ranlib21"
-      - "/usr/local/sbin/llvm-ranlib21"
-      - "/usr/local/bin/llvm-ranlib21"
-      - "/usr/lib/jvm/default/bin/llvm-ranlib21"
-      - "/usr/bin/site_perl/llvm-ranlib21"
-      - "/usr/bin/vendor_perl/llvm-ranlib21"
-      - "/usr/bin/core_perl/llvm-ranlib21"
-    found: "/usr/bin/llvm-ranlib"
-    search_context:
-      ENV{PATH}:
-        - "/home/markp/.local/bin"
-        - "/usr/local/sbin"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/usr/lib/jvm/default/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake:50 (find_program)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
-      - "CMakeLists.txt:26 (project)"
-    mode: "program"
-    variable: "CMAKE_C_COMPILER_CLANG_SCAN_DEPS"
-    description: "`clang-scan-deps` dependency scanner"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "clang-scan-deps-21.1"
-      - "clang-scan-deps-21"
-      - "clang-scan-deps21"
-      - "clang-scan-deps"
-    candidate_directories:
-      - "/usr/bin/"
-      - "/home/markp/.local/bin/"
-      - "/usr/local/sbin/"
-      - "/usr/local/bin/"
-      - "/usr/lib/jvm/default/bin/"
-      - "/usr/bin/site_perl/"
-      - "/usr/bin/vendor_perl/"
-      - "/usr/bin/core_perl/"
-    searched_directories:
-      - "/usr/bin/clang-scan-deps-21.1"
-      - "/home/markp/.local/bin/clang-scan-deps-21.1"
-      - "/usr/local/sbin/clang-scan-deps-21.1"
-      - "/usr/local/bin/clang-scan-deps-21.1"
-      - "/usr/lib/jvm/default/bin/clang-scan-deps-21.1"
-      - "/usr/bin/site_perl/clang-scan-deps-21.1"
-      - "/usr/bin/vendor_perl/clang-scan-deps-21.1"
-      - "/usr/bin/core_perl/clang-scan-deps-21.1"
-      - "/usr/bin/clang-scan-deps-21"
-      - "/home/markp/.local/bin/clang-scan-deps-21"
-      - "/usr/local/sbin/clang-scan-deps-21"
-      - "/usr/local/bin/clang-scan-deps-21"
-      - "/usr/lib/jvm/default/bin/clang-scan-deps-21"
-      - "/usr/bin/site_perl/clang-scan-deps-21"
-      - "/usr/bin/vendor_perl/clang-scan-deps-21"
-      - "/usr/bin/core_perl/clang-scan-deps-21"
-      - "/usr/bin/clang-scan-deps21"
-      - "/home/markp/.local/bin/clang-scan-deps21"
-      - "/usr/local/sbin/clang-scan-deps21"
-      - "/usr/local/bin/clang-scan-deps21"
-      - "/usr/lib/jvm/default/bin/clang-scan-deps21"
-      - "/usr/bin/site_perl/clang-scan-deps21"
-      - "/usr/bin/vendor_perl/clang-scan-deps21"
-      - "/usr/bin/core_perl/clang-scan-deps21"
-    found: "/usr/bin/clang-scan-deps"
+      - "/usr/bin/gcc-ranlib-15.2"
+      - "/home/markp/.local/bin/gcc-ranlib-15.2"
+      - "/usr/local/sbin/gcc-ranlib-15.2"
+      - "/usr/local/bin/gcc-ranlib-15.2"
+      - "/usr/lib/jvm/default/bin/gcc-ranlib-15.2"
+      - "/usr/bin/site_perl/gcc-ranlib-15.2"
+      - "/usr/bin/vendor_perl/gcc-ranlib-15.2"
+      - "/usr/bin/core_perl/gcc-ranlib-15.2"
+      - "/usr/bin/gcc-ranlib-15"
+      - "/home/markp/.local/bin/gcc-ranlib-15"
+      - "/usr/local/sbin/gcc-ranlib-15"
+      - "/usr/local/bin/gcc-ranlib-15"
+      - "/usr/lib/jvm/default/bin/gcc-ranlib-15"
+      - "/usr/bin/site_perl/gcc-ranlib-15"
+      - "/usr/bin/vendor_perl/gcc-ranlib-15"
+      - "/usr/bin/core_perl/gcc-ranlib-15"
+      - "/usr/bin/gcc-ranlib15"
+      - "/home/markp/.local/bin/gcc-ranlib15"
+      - "/usr/local/sbin/gcc-ranlib15"
+      - "/usr/local/bin/gcc-ranlib15"
+      - "/usr/lib/jvm/default/bin/gcc-ranlib15"
+      - "/usr/bin/site_perl/gcc-ranlib15"
+      - "/usr/bin/vendor_perl/gcc-ranlib15"
+      - "/usr/bin/core_perl/gcc-ranlib15"
+    found: "/usr/bin/gcc-ranlib"
     search_context:
       ENV{PATH}:
         - "/home/markp/.local/bin"
@@ -827,8 +750,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj"
-      binary: "/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj"
+      source: "/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1"
+      binary: "/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -837,50 +760,61 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj'
+        Change Dir: '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1cf87/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_1cf87.dir/build.make CMakeFiles/cmTC_1cf87.dir/build
-        make[1]: Entering directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj'
-        Building C object CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o
-        /usr/bin/clang   -std=c17   -v -MD -MT CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
-        clang version 21.1.6
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a888e/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_a888e.dir/build.make CMakeFiles/cmTC_a888e.dir/build
+        make[1]: Entering directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1'
+        Building C object CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o
+        /usr/bin/gcc   -std=c17   -v -o CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/gcc
         Target: x86_64-pc-linux-gnu
+        Configured with: /build/gcc/src/gcc/configure --enable-languages=ada,c,c++,d,fortran,go,lto,m2,objc,obj-c++,rust,cobol --enable-bootstrap --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://gitlab.archlinux.org/archlinux/packaging/packages/gcc/-/issues --with-build-config=bootstrap-lto --with-linker-hash-style=gnu --with-system-zlib --enable-__cxa_atexit --enable-cet=auto --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-default-ssp --enable-gnu-indirect-function --enable-gnu-unique-object --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-linker-build-id --enable-lto --enable-multilib --enable-plugin --enable-shared --enable-threads=posix --disable-libssp --disable-libstdcxx-pch --disable-werror
         Thread model: posix
-        InstalledDir: /usr/bin
-        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-pc-linux-gnu/15.2.1
-        Found candidate GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1
-        Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1
-        Candidate multilib: .;@m64
-        Candidate multilib: 32;@m32
-        Selected multilib: .;@m64
-         (in-process)
-         "/usr/bin/clang-21" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj -v -fcoverage-compilation-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=c17 -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
-        clang -cc1 version 21.1.6 based upon LLVM 21.1.6 default target x86_64-pc-linux-gnu
-        ignoring nonexistent directory "/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"
-        ignoring nonexistent directory "/include"
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.2.1 20260103 (GCC) 
+        COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_a888e.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -std=c17 -version -o /tmp/ccbSCrsT.s
+        GNU C17 (GCC) version 15.2.1 20260103 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 15.2.1 20260103, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"
         #include "..." search starts here:
         #include <...> search starts here:
-         /usr/lib/clang/21/include
+         /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include
          /usr/local/include
+         /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed
          /usr/include
         End of search list.
-        Linking C executable cmTC_1cf87
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cf87.dir/link.txt --verbose=1
-        clang version 21.1.6
+        Compiler executable checksum: 2aa0ead74273ed721e313ee5d9153840
+        COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/'
+         as -v --64 -o CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o /tmp/ccbSCrsT.s
+        GNU assembler version 2.45.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.45.1
+        COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_a888e
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a888e.dir/link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/gcc
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper
         Target: x86_64-pc-linux-gnu
+        Configured with: /build/gcc/src/gcc/configure --enable-languages=ada,c,c++,d,fortran,go,lto,m2,objc,obj-c++,rust,cobol --enable-bootstrap --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://gitlab.archlinux.org/archlinux/packaging/packages/gcc/-/issues --with-build-config=bootstrap-lto --with-linker-hash-style=gnu --with-system-zlib --enable-__cxa_atexit --enable-cet=auto --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-default-ssp --enable-gnu-indirect-function --enable-gnu-unique-object --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-linker-build-id --enable-lto --enable-multilib --enable-plugin --enable-shared --enable-threads=posix --disable-libssp --disable-libstdcxx-pch --disable-werror
         Thread model: posix
-        InstalledDir: /usr/bin
-        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-pc-linux-gnu/15.2.1
-        Found candidate GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1
-        Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1
-        Candidate multilib: .;@m64
-        Candidate multilib: 32;@m32
-        Selected multilib: .;@m64
-         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1cf87 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.2.1 20260103 (GCC) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a888e' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a888e.'
+         /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXMEjXc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a888e /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o
+        collect2 version 15.2.1 20260103
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXMEjXc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a888e /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o
         GNU ld (GNU Binutils) 2.45.1
-        /usr/bin/clang  -v -Wl,-v CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -o cmTC_1cf87
-        make[1]: Leaving directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a888e' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a888e.'
+        /usr/bin/gcc  -v -Wl,-v CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -o cmTC_a888e
+        make[1]: Leaving directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1'
         
       exitCode: 0
   -
@@ -893,14 +827,16 @@ events:
       Parsed C implicit include dir info: rv=done
         found start of include info
         found start of implicit include info
-          add: [/usr/lib/clang/21/include]
+          add: [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include]
           add: [/usr/local/include]
+          add: [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed]
           add: [/usr/include]
         end of search list found
-        collapse include dir [/usr/lib/clang/21/include] ==> [/usr/lib/clang/21/include]
+        collapse include dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include]
         collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed]
         collapse include dir [/usr/include] ==> [/usr/include]
-        implicit include dirs: [/usr/lib/clang/21/include;/usr/local/include;/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include;/usr/local/include;/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed;/usr/include]
       
       
   -
@@ -913,101 +849,116 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj']
+        ignore line: [Change Dir: '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1cf87/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_1cf87.dir/build.make CMakeFiles/cmTC_1cf87.dir/build]
-        ignore line: [make[1]: Entering directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj']
-        ignore line: [Building C object CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/clang   -std=c17   -v -MD -MT CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
-        ignore line: [clang version 21.1.6]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a888e/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_a888e.dir/build.make CMakeFiles/cmTC_a888e.dir/build]
+        ignore line: [make[1]: Entering directory '/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-fhcKY1']
+        ignore line: [Building C object CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/gcc   -std=c17   -v -o CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/gcc]
         ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /build/gcc/src/gcc/configure --enable-languages=ada c c++ d fortran go lto m2 objc obj-c++ rust cobol --enable-bootstrap --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://gitlab.archlinux.org/archlinux/packaging/packages/gcc/-/issues --with-build-config=bootstrap-lto --with-linker-hash-style=gnu --with-system-zlib --enable-__cxa_atexit --enable-cet=auto --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-default-ssp --enable-gnu-indirect-function --enable-gnu-unique-object --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-linker-build-id --enable-lto --enable-multilib --enable-plugin --enable-shared --enable-threads=posix --disable-libssp --disable-libstdcxx-pch --disable-werror]
         ignore line: [Thread model: posix]
-        ignore line: [InstalledDir: /usr/bin]
-        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Found candidate GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Candidate multilib: .]
-        ignore line: [@m64]
-        ignore line: [Candidate multilib: 32]
-        ignore line: [@m32]
-        ignore line: [Selected multilib: .]
-        ignore line: [@m64]
-        ignore line: [ (in-process)]
-        ignore line: [ "/usr/bin/clang-21" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj -v -fcoverage-compilation-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles/CMakeScratch/TryCompile-9O0HXj -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=c17 -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
-        ignore line: [clang -cc1 version 21.1.6 based upon LLVM 21.1.6 default target x86_64-pc-linux-gnu]
-        ignore line: [ignoring nonexistent directory "/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"]
-        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.2.1 20260103 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_a888e.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -std=c17 -version -o /tmp/ccbSCrsT.s]
+        ignore line: [GNU C17 (GCC) version 15.2.1 20260103 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 15.2.1 20260103  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"]
         ignore line: [#include "..." search starts here:]
         ignore line: [#include <...> search starts here:]
-        ignore line: [ /usr/lib/clang/21/include]
+        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include]
         ignore line: [ /usr/local/include]
+        ignore line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Linking C executable cmTC_1cf87]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cf87.dir/link.txt --verbose=1]
-        ignore line: [clang version 21.1.6]
+        ignore line: [Compiler executable checksum: 2aa0ead74273ed721e313ee5d9153840]
+        ignore line: [COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o /tmp/ccbSCrsT.s]
+        ignore line: [GNU assembler version 2.45.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.45.1]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-std=c17' '-v' '-o' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_a888e]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a888e.dir/link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper]
         ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: /build/gcc/src/gcc/configure --enable-languages=ada c c++ d fortran go lto m2 objc obj-c++ rust cobol --enable-bootstrap --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://gitlab.archlinux.org/archlinux/packaging/packages/gcc/-/issues --with-build-config=bootstrap-lto --with-linker-hash-style=gnu --with-system-zlib --enable-__cxa_atexit --enable-cet=auto --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-default-ssp --enable-gnu-indirect-function --enable-gnu-unique-object --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-linker-build-id --enable-lto --enable-multilib --enable-plugin --enable-shared --enable-threads=posix --disable-libssp --disable-libstdcxx-pch --disable-werror]
         ignore line: [Thread model: posix]
-        ignore line: [InstalledDir: /usr/bin]
-        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Found candidate GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-        ignore line: [Candidate multilib: .]
-        ignore line: [@m64]
-        ignore line: [Candidate multilib: 32]
-        ignore line: [@m32]
-        ignore line: [Selected multilib: .]
-        ignore line: [@m64]
-        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1cf87 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o]
-          arg [/usr/bin/ld] ==> ignore
-          arg [--hash-style=gnu] ==> ignore
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.2.1 20260103 (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a888e' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a888e.']
+        link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXMEjXc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a888e /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o]
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccXMEjXc.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [--build-id] ==> ignore
           arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
           arg [-m] ==> ignore
           arg [elf_x86_64] ==> ignore
-          arg [-pie] ==> ignore
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_1cf87] ==> ignore
-          arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o]
-          arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o]
-          arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o]
-          arg [-L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1] ==> dir [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-          arg [-L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64] ==> dir [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64]
-          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
-          arg [-L/usr/lib64] ==> dir [/usr/lib64]
+          arg [cmTC_a888e] ==> ignore
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o]
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1]
+          arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../..] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../..]
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_1cf87.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
           arg [-lgcc_s] ==> lib [gcc_s]
-          arg [--no-as-needed] ==> ignore
+          arg [--pop-state] ==> ignore
           arg [-lc] ==> lib [c]
           arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
           arg [-lgcc_s] ==> lib [gcc_s]
-          arg [--no-as-needed] ==> ignore
-          arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o]
-          arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o] ==> obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o]
+        ignore line: [collect2 version 15.2.1 20260103]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXMEjXc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o cmTC_a888e /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_a888e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o]
         linker tool for 'C': /usr/bin/ld
-        collapse obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o] ==> [/usr/lib64/Scrt1.o]
-        collapse obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
-        collapse obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o] ==> [/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o]
-        collapse obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o] ==> [/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o]
-        collapse obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
-        collapse library dir [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1] ==> [/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1]
-        collapse library dir [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64] ==> [/usr/lib64]
-        collapse library dir [/lib/../lib64] ==> [/lib64]
-        collapse library dir [/usr/lib64] ==> [/usr/lib64]
+        collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o] ==> [/usr/lib/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o] ==> [/usr/lib/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o] ==> [/usr/lib/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1]
+        collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../..] ==> [/usr/lib]
         collapse library dir [/lib] ==> [/lib]
         collapse library dir [/usr/lib] ==> [/usr/lib]
         implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
-        implicit objs: [/usr/lib64/Scrt1.o;/usr/lib64/crti.o;/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o;/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o;/usr/lib64/crtn.o]
-        implicit dirs: [/usr/lib64/gcc/x86_64-pc-linux-gnu/15.2.1;/usr/lib64;/lib64;/lib;/usr/lib]
+        implicit objs: [/usr/lib/Scrt1.o;/usr/lib/crti.o;/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o;/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o;/usr/lib/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1;/usr/lib;/lib]
         implicit fwks: []
       
       

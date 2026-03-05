@@ -1,15 +1,16 @@
 #include "server/server_main.h"
 #include <errno.h>
+#include <fcntl.h>
 #include <getopt.h>
 #include <inttypes.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <signal.h>
+#include <sys/wait.h>
+#include <sys/types>
+#include <unistd.h>
 
 static void           parse_arguments(server_context *ctx);
 static void           handle_arguments(server_context *ctx);
@@ -39,11 +40,7 @@ int main(const int argc, char **argv)
     parse_arguments(&ctx);
     handle_arguments(&ctx);
     initialize_server(&ctx);
-    
-    while(1)
-    {
-        accept_client(&ctx);
-    }
+    create_children_pool(&ctx);
 
     close_server(&ctx);
     return 0;
@@ -172,7 +169,7 @@ _Noreturn static void quit(const server_context *ctx)
 static void initialize_server(server_context *ctx)
 {
     struct sockaddr_in serv_addr;
-    socklen_t addr_len = sizeof(serv_addr);
+    socklen_t          addr_len = sizeof(serv_addr);
 
     // Create socket
     ctx->sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -185,9 +182,9 @@ static void initialize_server(server_context *ctx)
 
     // Set up server address structure
     memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_family      = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons(ctx->port);
+    serv_addr.sin_port        = htons(ctx->port);
 
     // Bind socket
     if(bind(ctx->sockfd, (struct sockaddr *)&serv_addr, addr_len) == -1)
@@ -198,7 +195,7 @@ static void initialize_server(server_context *ctx)
     }
 
     // Listen for connections
-    if(listen(ctx->sockfd, 5) == -1)
+    if(listen(ctx->sockfd, MAX_CONNECTIONS) == -1)
     {
         ctx->exit_message = "Listen failed";
         ctx->exit_code    = EXIT_FAILURE;
@@ -208,11 +205,51 @@ static void initialize_server(server_context *ctx)
     printf("Server listening on port %u\n", ctx->port);
 }
 
+static void create_children_pool(server_context *ctx) 
+{
+    for(size_t i = 0; i < MAX_NUM_CHILDREN; i++) 
+    {
+        pid_t pid = fork();
+        if(pid == 0) 
+        {
+            // CHILD PROCESS: Permanent worker loop
+            while(1) 
+            {
+                // accept_client must store the new fd in ctx->client_fd
+                accept_client(ctx); 
+
+                // Session loop for this specific client
+                while(1) 
+                {
+                    read_input(ctx); 
+                    if(ctx->bytes_received <= 0) break; 
+                    analyze_command(ctx);
+                }
+                
+                close(ctx->client_fd); // Close only the client, keep listener
+                ctx->client_fd = -1;
+            }
+            exit(EXIT_SUCCESS); 
+        }
+        else if(pid < 0) 
+        {
+            perror("Fork failed");
+        }
+    }
+
+    // PARENT PROCESS: After forking, stay alive to reap dead children
+    while(1) 
+    {
+        int status;
+        wait(&status); 
+    }
+}
+
 static void accept_client(server_context *ctx)
 {
-    int client_fd;
+    int                     client_fd;
     struct sockaddr_storage client_addr;
-    socklen_t addr_len = sizeof(client_addr);
+    socklen_t               addr_len = sizeof(client_addr);
 
     // Accept connection
     client_fd = accept(ctx->sockfd, (struct sockaddr *)&client_addr, &addr_len);
@@ -222,61 +259,30 @@ static void accept_client(server_context *ctx)
         return;
     }
 
-    printf("Client connected\n");
+    ctx->clientfd = client_fd;
 
-    // Fork to handle client
-    pid_t pid = fork();
-    if(pid == 0)
-    {
-        // Child process
-        close(ctx->sockfd); // Close listening socket in child
-        
-        while(1)
-        {
-            read_input(ctx);
-            
-            if(ctx->bytes_received <= 0)
-            {
-                break;
-            }
-            
-            analyze_command(ctx);
-        }
-        
-        close_session(ctx);
-        exit(EXIT_SUCCESS);
-    }
-    else if(pid > 0)
-    {
-        // Parent process
-        close(client_fd); // Close client socket in parent
-        waitpid(pid, NULL, 0); // Wait for child to complete
-    }
-    else
-    {
-        perror("Fork failed");
-        close(client_fd);
-    }
+    printf("Client connected\n");
+    
 }
 
 static void read_input(server_context *ctx)
 {
     memset(ctx->user_input, 0, sizeof(ctx->user_input));
-    
+
     ctx->bytes_received = recv(ctx->sockfd, ctx->user_input, sizeof(ctx->user_input) - 1, 0);
-    
+
     if(ctx->bytes_received == 0)
     {
         // Client disconnected
         return;
     }
-    
+
     if(ctx->bytes_received == -1)
     {
         perror("Read failed");
         return;
     }
-    
+
     ctx->user_input[ctx->bytes_received] = '\0';
 }
 
@@ -296,7 +302,7 @@ static void analyze_command(server_context *ctx)
         free(cmd_copy);
         return;
     }
-    
+
     if(strncmp(ctx->user_input, "cd ", 3) == 0)
     {
         run_builtin(ctx);
@@ -317,12 +323,15 @@ static void run_builtin(server_context *ctx)
         // Exit command - just return to close session
         return;
     }
-    
+
     if(strncmp(ctx->user_input, "cd ", 3) == 0)
     {
         char *dir = ctx->user_input + 3;
-        while(*dir == ' ') dir++; // Skip leading spaces
-        
+        while(*dir == ' ') {
+            dir++;
+        }
+                // Skip leading spaces
+
         if(chdir(dir) != 0)
         {
             perror("cd failed");
@@ -346,19 +355,19 @@ static void run_external(server_context *ctx)
     // This is a simplified implementation
     // In a full implementation, you would parse the command and arguments
     // and handle redirection operators (<, >, 2>)
-    
+
     char *args[32];
-    int arg_count = 0;
-    
+    int   arg_count = 0;
+
     // Simple parsing - in reality this would be more complex
     char *token = strtok(ctx->user_input, " ");
     while(token != NULL && arg_count < 31)
     {
         args[arg_count++] = token;
-        token = strtok(NULL, " ");
+        token             = strtok(NULL, " ");
     }
     args[arg_count] = NULL;
-    
+
     if(arg_count > 0)
     {
         execvp(args[0], args);
@@ -390,4 +399,25 @@ static void close_server(server_context *ctx)
         close(ctx->sockfd);
         ctx->sockfd = -1;
     }
+}
+
+static char *find_path(const char *command) 
+{
+    static char full_path[1024];
+    const char *search_paths[] = {"/bin/", "/usr/bin/", "/usr/local/bin/", NULL};
+
+    if (command[0] == '/') 
+    {
+        return (char *)command;
+    }
+
+    for (int i = 0; search_paths[i] != NULL; i++) 
+    {
+        snprintf(full_path, sizeof(full_path), "%s%s", search_paths[i], command);
+        if (access(full_path, X_OK) == 0) 
+        {
+            return full_path;
+        }
+    }
+    return NULL;
 }

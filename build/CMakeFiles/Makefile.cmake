@@ -42,11 +42,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
-  "/usr/share/cmake/Modules/Compiler/Clang-C.cmake"
   "/usr/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake"
-  "/usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake"
-  "/usr/share/cmake/Modules/Compiler/Clang.cmake"
   "/usr/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake"
@@ -56,6 +53,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-C.cmake"
+  "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake"
   "/usr/share/cmake/Modules/Compiler/GNU.cmake"
   "/usr/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake"
   "/usr/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake"
@@ -95,7 +94,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linker/GNU.cmake"
   "/usr/share/cmake/Modules/Platform/Linker/Linux-GNU-C.cmake"
   "/usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake"
-  "/usr/share/cmake/Modules/Platform/Linux-Clang-C.cmake"
   "/usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake"
@@ -120,11 +118,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/client.dir/DependInfo.cmake"
+  "CMakeFiles/server.dir/DependInfo.cmake"
   "CMakeFiles/template-c_format_all.dir/DependInfo.cmake"
   "CMakeFiles/template-c_tidy_db.dir/DependInfo.cmake"
   "CMakeFiles/template-c_tidy_all.dir/DependInfo.cmake"
   "CMakeFiles/template-c_analyze_all.dir/DependInfo.cmake"
   "CMakeFiles/template-c_cppcheck_all.dir/DependInfo.cmake"
-  "CMakeFiles/template-c_clang_sa_all.dir/DependInfo.cmake"
   )

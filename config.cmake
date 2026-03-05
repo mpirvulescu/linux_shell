@@ -18,16 +18,29 @@ set(STANDARD_FLAGS
 )
 
 # Define targets
-set(EXECUTABLE_TARGETS main)
+# Change this to create two separate binaries
+set(EXECUTABLE_TARGETS client server)
 set(LIBRARY_TARGETS "")
 
-set(main_SOURCES
+# --- Client Configuration ---
+set(client_SOURCES
         src/client/client_main.c
 )
 
-set(main_HEADERS
+set(client_HEADERS
         include/client/client_main.h
 )
 
-set(main_LINK_LIBRARIES "")
+set(client_LINK_LIBRARIES "")
+
+# --- Server Configuration ---
+set(server_SOURCES
+        src/server/server_main.c
+)
+
+set(server_HEADERS
+        include/server/server_main.h
+)
+
+set(server_LINK_LIBRARIES "")
 
