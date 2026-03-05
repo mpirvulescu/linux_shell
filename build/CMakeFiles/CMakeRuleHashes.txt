@@ -1,11 +1,11 @@
 # Hashes of file build rules.
-5ed3a4270992257334f91469b011a424 .format/src/client_main.c.stamp
+b6c7e80dd51b5c01583eab3acf0c64ad .format/src/client/client_main.c.stamp
 c7c153a156f9875c7f9cf732684d0c71 CMakeFiles/template-c_analyze_all
 523081d5f869e069153c1bc7103c3e6b CMakeFiles/template-c_clang_sa_all
 cdd9c9e0d69cd18ad4cce7ee58b8ceb1 CMakeFiles/template-c_cppcheck_all
 c7f448668cea005c1cbd01cfd8d0eba4 CMakeFiles/template-c_format_all
 f813fe4483f4bb38139de3e62640757b CMakeFiles/template-c_tidy_all
 c7f448668cea005c1cbd01cfd8d0eba4 CMakeFiles/template-c_tidy_db
-b80395ced5f073e464a2b061c7e3c9ac analyze/src_client_main.c.stamp
-2c1c037d7fda11acf7ef9f274fb86a45 clang-sa/src_client_main.c.stamp
+54b0b224d27185e982377e68372809c3 analyze/src_client_client_main.c.stamp
+0c2812bcf2d29a8bb9659f7d3fe254ac clang-sa/src_client_client_main.c.stamp
 1a710d4e0a01364abc485168973b5bd5 tidy_cc/compile_commands.json

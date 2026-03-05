@@ -252,29 +252,29 @@ template-c_clang_sa_all/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/build
 .PHONY : template-c_clang_sa_all/fast
 
-src/client_main.o: src/client_main.c.o
-.PHONY : src/client_main.o
+src/client/client_main.o: src/client/client_main.c.o
+.PHONY : src/client/client_main.o
 
 # target to build an object file
-src/client_main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client_main.c.o
-.PHONY : src/client_main.c.o
+src/client/client_main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.o
+.PHONY : src/client/client_main.c.o
 
-src/client_main.i: src/client_main.c.i
-.PHONY : src/client_main.i
+src/client/client_main.i: src/client/client_main.c.i
+.PHONY : src/client/client_main.i
 
 # target to preprocess a source file
-src/client_main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client_main.c.i
-.PHONY : src/client_main.c.i
+src/client/client_main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.i
+.PHONY : src/client/client_main.c.i
 
-src/client_main.s: src/client_main.c.s
-.PHONY : src/client_main.s
+src/client/client_main.s: src/client/client_main.c.s
+.PHONY : src/client/client_main.s
 
 # target to generate assembly for a file
-src/client_main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client_main.c.s
-.PHONY : src/client_main.c.s
+src/client/client_main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/client/client_main.c.s
+.PHONY : src/client/client_main.c.s
 
 # Help Target
 help:
@@ -295,9 +295,9 @@ help:
 	@echo "... template-c_tidy_all"
 	@echo "... template-c_tidy_db"
 	@echo "... main"
-	@echo "... src/client_main.o"
-	@echo "... src/client_main.i"
-	@echo "... src/client_main.s"
+	@echo "... src/client/client_main.o"
+	@echo "... src/client/client_main.i"
+	@echo "... src/client/client_main.s"
 .PHONY : help
 
 

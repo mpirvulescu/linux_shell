@@ -22,11 +22,11 @@ set(EXECUTABLE_TARGETS main)
 set(LIBRARY_TARGETS "")
 
 set(main_SOURCES
-        src/client_main.c
+        src/client/client_main.c
 )
 
 set(main_HEADERS
-        include/client_main.h
+        include/client/client_main.h
 )
 
 set(main_LINK_LIBRARIES "")

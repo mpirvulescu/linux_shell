@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c" "CMakeFiles/main.dir/src/client_main.c.o" "gcc" "CMakeFiles/main.dir/src/client_main.c.o.d"
+  "/home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c" "CMakeFiles/main.dir/src/client/client_main.c.o" "gcc" "CMakeFiles/main.dir/src/client/client_main.c.o.d"
   "" "main" "gcc" "CMakeFiles/main.dir/link.d"
   )
 

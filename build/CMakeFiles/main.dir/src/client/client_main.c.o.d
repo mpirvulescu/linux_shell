@@ -1,6 +1,6 @@
-CMakeFiles/main.dir/src/client_main.c.o: \
-  /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c \
-  /home/markp/Public/BCIT/COMP4951/assignment2/source/include/client_main.h \
+CMakeFiles/main.dir/src/client/client_main.c.o: \
+  /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c \
+  /home/markp/Public/BCIT/COMP4951/assignment2/source/include/client/client_main.h \
   /usr/include/arpa/inet.h /usr/include/features.h \
   /usr/include/features-time64.h /usr/include/bits/wordsize.h \
   /usr/include/bits/timesize.h /usr/include/stdc-predef.h \

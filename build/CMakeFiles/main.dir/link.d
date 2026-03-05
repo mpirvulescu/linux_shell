@@ -2,7 +2,7 @@ main: \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
-  CMakeFiles/main.dir/src/client_main.c.o \
+  CMakeFiles/main.dir/src/client/client_main.c.o \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/libgcc_s.so \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/libgcc_s.so \
@@ -31,7 +31,7 @@ main: \
 
 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
-CMakeFiles/main.dir/src/client_main.c.o:
+CMakeFiles/main.dir/src/client/client_main.c.o:
 
 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a:
 

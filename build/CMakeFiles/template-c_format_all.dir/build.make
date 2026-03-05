@@ -66,19 +66,19 @@ include CMakeFiles/template-c_format_all.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/template-c_format_all.dir/progress.make
 
-CMakeFiles/template-c_format_all: .format/src/client_main.c.stamp
+CMakeFiles/template-c_format_all: .format/src/client/client_main.c.stamp
 
-.format/src/client_main.c.stamp: /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating .format/src/client_main.c.stamp"
-	/usr/bin/cmake -E make_directory /home/markp/Public/BCIT/COMP4951/assignment2/source/build/.format/src
-	/usr/bin/cmake -E echo "🔧 running: /usr/bin/clang-format -i -style=file /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c"
-	/usr/bin/clang-format -i -style=file /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client_main.c
-	/usr/bin/cmake -E touch /home/markp/Public/BCIT/COMP4951/assignment2/source/build/.format/src/client_main.c.stamp
+.format/src/client/client_main.c.stamp: /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating .format/src/client/client_main.c.stamp"
+	/usr/bin/cmake -E make_directory /home/markp/Public/BCIT/COMP4951/assignment2/source/build/.format/src/client
+	/usr/bin/cmake -E echo "🔧 running: /usr/bin/clang-format -i -style=file /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c"
+	/usr/bin/clang-format -i -style=file /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c
+	/usr/bin/cmake -E touch /home/markp/Public/BCIT/COMP4951/assignment2/source/build/.format/src/client/client_main.c.stamp
 
 CMakeFiles/template-c_format_all.dir/codegen:
 .PHONY : CMakeFiles/template-c_format_all.dir/codegen
 
-template-c_format_all: .format/src/client_main.c.stamp
+template-c_format_all: .format/src/client/client_main.c.stamp
 template-c_format_all: CMakeFiles/template-c_format_all
 template-c_format_all: CMakeFiles/template-c_format_all.dir/build.make
 .PHONY : template-c_format_all
