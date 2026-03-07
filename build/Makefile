@@ -252,6 +252,19 @@ template-c_cppcheck_all/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/build
 .PHONY : template-c_cppcheck_all/fast
 
+#=============================================================================
+# Target rules for targets named template-c_clang_sa_all
+
+# Build rule for target.
+template-c_clang_sa_all: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 template-c_clang_sa_all
+.PHONY : template-c_clang_sa_all
+
+# fast build rule for target.
+template-c_clang_sa_all/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/build
+.PHONY : template-c_clang_sa_all/fast
+
 src/client/client_main.o: src/client/client_main.c.o
 .PHONY : src/client/client_main.o
 
@@ -313,6 +326,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... template-c_analyze_all"
+	@echo "... template-c_clang_sa_all"
 	@echo "... template-c_cppcheck_all"
 	@echo "... template-c_format_all"
 	@echo "... template-c_tidy_all"

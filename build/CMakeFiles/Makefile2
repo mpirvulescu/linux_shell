@@ -68,6 +68,7 @@ all: CMakeFiles/server.dir/all
 all: CMakeFiles/template-c_tidy_all.dir/all
 all: CMakeFiles/template-c_analyze_all.dir/all
 all: CMakeFiles/template-c_cppcheck_all.dir/all
+all: CMakeFiles/template-c_clang_sa_all.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -76,6 +77,7 @@ codegen: CMakeFiles/server.dir/codegen
 codegen: CMakeFiles/template-c_tidy_all.dir/codegen
 codegen: CMakeFiles/template-c_analyze_all.dir/codegen
 codegen: CMakeFiles/template-c_cppcheck_all.dir/codegen
+codegen: CMakeFiles/template-c_clang_sa_all.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -90,6 +92,7 @@ clean: CMakeFiles/template-c_tidy_db.dir/clean
 clean: CMakeFiles/template-c_tidy_all.dir/clean
 clean: CMakeFiles/template-c_analyze_all.dir/clean
 clean: CMakeFiles/template-c_cppcheck_all.dir/clean
+clean: CMakeFiles/template-c_clang_sa_all.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -167,7 +170,7 @@ CMakeFiles/server.dir/clean:
 CMakeFiles/template-c_format_all.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_format_all.dir/build.make CMakeFiles/template-c_format_all.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_format_all.dir/build.make CMakeFiles/template-c_format_all.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=9,10 "Built target template-c_format_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=12,13 "Built target template-c_format_all"
 .PHONY : CMakeFiles/template-c_format_all.dir/all
 
 # Build rule for subdir invocation for target.
@@ -184,7 +187,7 @@ template-c_format_all: CMakeFiles/template-c_format_all.dir/rule
 # codegen rule for target.
 CMakeFiles/template-c_format_all.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_format_all.dir/build.make CMakeFiles/template-c_format_all.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=9,10 "Finished codegen for target template-c_format_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=12,13 "Finished codegen for target template-c_format_all"
 .PHONY : CMakeFiles/template-c_format_all.dir/codegen
 
 # clean rule for target.
@@ -199,7 +202,7 @@ CMakeFiles/template-c_format_all.dir/clean:
 CMakeFiles/template-c_tidy_db.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_tidy_db.dir/build.make CMakeFiles/template-c_tidy_db.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_tidy_db.dir/build.make CMakeFiles/template-c_tidy_db.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=11 "Built target template-c_tidy_db"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=14 "Built target template-c_tidy_db"
 .PHONY : CMakeFiles/template-c_tidy_db.dir/all
 
 # Build rule for subdir invocation for target.
@@ -216,7 +219,7 @@ template-c_tidy_db: CMakeFiles/template-c_tidy_db.dir/rule
 # codegen rule for target.
 CMakeFiles/template-c_tidy_db.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_tidy_db.dir/build.make CMakeFiles/template-c_tidy_db.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=11 "Finished codegen for target template-c_tidy_db"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=14 "Finished codegen for target template-c_tidy_db"
 .PHONY : CMakeFiles/template-c_tidy_db.dir/codegen
 
 # clean rule for target.
@@ -296,12 +299,12 @@ CMakeFiles/template-c_analyze_all.dir/clean:
 # Target rules for target CMakeFiles/template-c_cppcheck_all.dir
 
 # All Build rule for target.
-CMakeFiles/template-c_cppcheck_all.dir/all: CMakeFiles/template-c_tidy_all.dir/all
 CMakeFiles/template-c_cppcheck_all.dir/all: CMakeFiles/client.dir/all
 CMakeFiles/template-c_cppcheck_all.dir/all: CMakeFiles/server.dir/all
+CMakeFiles/template-c_cppcheck_all.dir/all: CMakeFiles/template-c_tidy_all.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=8 "Built target template-c_cppcheck_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=11 "Built target template-c_cppcheck_all"
 .PHONY : CMakeFiles/template-c_cppcheck_all.dir/all
 
 # Build rule for subdir invocation for target.
@@ -316,17 +319,49 @@ template-c_cppcheck_all: CMakeFiles/template-c_cppcheck_all.dir/rule
 .PHONY : template-c_cppcheck_all
 
 # codegen rule for target.
-CMakeFiles/template-c_cppcheck_all.dir/codegen: CMakeFiles/template-c_tidy_all.dir/all
 CMakeFiles/template-c_cppcheck_all.dir/codegen: CMakeFiles/client.dir/all
 CMakeFiles/template-c_cppcheck_all.dir/codegen: CMakeFiles/server.dir/all
+CMakeFiles/template-c_cppcheck_all.dir/codegen: CMakeFiles/template-c_tidy_all.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=8 "Finished codegen for target template-c_cppcheck_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=11 "Finished codegen for target template-c_cppcheck_all"
 .PHONY : CMakeFiles/template-c_cppcheck_all.dir/codegen
 
 # clean rule for target.
 CMakeFiles/template-c_cppcheck_all.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_cppcheck_all.dir/build.make CMakeFiles/template-c_cppcheck_all.dir/clean
 .PHONY : CMakeFiles/template-c_cppcheck_all.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/template-c_clang_sa_all.dir
+
+# All Build rule for target.
+CMakeFiles/template-c_clang_sa_all.dir/all: CMakeFiles/template-c_cppcheck_all.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=8,9,10 "Built target template-c_clang_sa_all"
+.PHONY : CMakeFiles/template-c_clang_sa_all.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/template-c_clang_sa_all.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles 14
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/template-c_clang_sa_all.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles 0
+.PHONY : CMakeFiles/template-c_clang_sa_all.dir/rule
+
+# Convenience name for target.
+template-c_clang_sa_all: CMakeFiles/template-c_clang_sa_all.dir/rule
+.PHONY : template-c_clang_sa_all
+
+# codegen rule for target.
+CMakeFiles/template-c_clang_sa_all.dir/codegen: CMakeFiles/template-c_cppcheck_all.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=8,9,10 "Finished codegen for target template-c_clang_sa_all"
+.PHONY : CMakeFiles/template-c_clang_sa_all.dir/codegen
+
+# clean rule for target.
+CMakeFiles/template-c_clang_sa_all.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/template-c_clang_sa_all.dir/build.make CMakeFiles/template-c_clang_sa_all.dir/clean
+.PHONY : CMakeFiles/template-c_clang_sa_all.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

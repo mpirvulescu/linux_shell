@@ -76,15 +76,15 @@ CMakeFiles/client.dir/src/client/client_main.c.o: CMakeFiles/client.dir/flags.ma
 CMakeFiles/client.dir/src/client/client_main.c.o: /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c
 CMakeFiles/client.dir/src/client/client_main.c.o: CMakeFiles/client.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/markp/Public/BCIT/COMP4951/assignment2/source/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/client.dir/src/client/client_main.c.o"
-	/bin/sh -c "echo \"🔧 compiling/linking: \$$*\" && exec \"\$$@\"" cmake-launch /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/client.dir/src/client/client_main.c.o -MF CMakeFiles/client.dir/src/client/client_main.c.o.d -o CMakeFiles/client.dir/src/client/client_main.c.o -c /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c
+	/bin/sh -c "echo \"🔧 compiling/linking: \$$*\" && exec \"\$$@\"" cmake-launch /usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/client.dir/src/client/client_main.c.o -MF CMakeFiles/client.dir/src/client/client_main.c.o.d -o CMakeFiles/client.dir/src/client/client_main.c.o -c /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c
 
 CMakeFiles/client.dir/src/client/client_main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/client.dir/src/client/client_main.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c > CMakeFiles/client.dir/src/client/client_main.c.i
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c > CMakeFiles/client.dir/src/client/client_main.c.i
 
 CMakeFiles/client.dir/src/client/client_main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/client.dir/src/client/client_main.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c -o CMakeFiles/client.dir/src/client/client_main.c.s
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/markp/Public/BCIT/COMP4951/assignment2/source/src/client/client_main.c -o CMakeFiles/client.dir/src/client/client_main.c.s
 
 # Object files for target client
 client_OBJECTS = \
