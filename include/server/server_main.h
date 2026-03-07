@@ -13,18 +13,20 @@ enum {
 enum {
     ERROR_MESSAGE_BUFFER = 64,
     USER_MESSAGE_BUFFER = 100,
-    SERVER_RESPONSE_BUFFER = 1024
-    PATH
+    SERVER_RESPONSE_BUFFER = 1024,
+    PATH_BUFFER = 1024,
+    MAX_ARGS = 64
 };
 
 enum {
     LOWEST_PORT_POSSIBLE = 1024,
-    HIGHEST_PORT_POSSIBLE = 65535
+    HIGHEST_PORT_POSSIBLE = 65535,
+    FILE_PERMISSIONS = 0644
 };
 
 enum {
     MAX_CONNECTIONS = 5,
-    MAX_NUM_CHILDREN = 8;
+    MAX_NUM_CHILDREN = 8
 };
 
 typedef struct {
@@ -43,6 +45,7 @@ typedef struct {
     char user_input[USER_MESSAGE_BUFFER];
     char server_output[SERVER_RESPONSE_BUFFER];
     ssize_t bytes_received;
+    pid_t worker_pids[MAX_NUM_CHILDREN];
 } server_context;
 
 

@@ -8,10 +8,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/types>
 #include <unistd.h>
 
+static void           sigchild_handler(int sig);
+static void           setup_sigchld(void);
 static void           parse_arguments(server_context *ctx);
 static void           handle_arguments(server_context *ctx);
 static server_context init_context(void);
@@ -20,15 +22,49 @@ static in_port_t      parse_in_port_t(server_context *ctx);
 _Noreturn static void usage(const server_context *ctx);
 _Noreturn static void quit(const server_context *ctx);
 static void           initialize_server(server_context *ctx);
+static void           spawn_worker(server_context *ctx, size_t index);
+static void           replace_workers(server_context *ctx);
+static void           create_children_pool(server_context *ctx);
 static void           accept_client(server_context *ctx);
 static void           read_input(server_context *ctx);
 static void           analyze_command(server_context *ctx);
+static int            parse_command(char *cmd, char *argv[], int argv_max, char **in_file, char **out_file, char **err_file);
+static char          *trim(char *s);
+static char          *find_path(const char *command);
 static void           run_builtin(server_context *ctx);
 static int            fork_process(void);
 static void           run_external(server_context *ctx);
 static void           wait_for_child(pid_t pid);
 static void           close_session(server_context *ctx);
 static void           close_server(server_context *ctx);
+
+static volatile sig_atomic_t child_died = 0;    // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+
+static void handle_sigint(int sig)
+{
+    (void)sig;
+    const char *msg = "\nShutting down worker pool...\n";
+    write(STDOUT_FILENO, msg, strlen(msg));
+    // Kill the entire process group so children die with the parent
+    kill(0, SIGTERM);
+    _exit(EXIT_SUCCESS);
+}
+
+static void sigchild_handler(int sig)
+{
+    (void)sig;
+    child_died = 1;
+}
+
+static void setup_sigchld(void)
+{
+    struct sigaction sa;
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_handler = sigchild_handler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_RESTART;    // Restart accept() if interrupted
+    sigaction(SIGCHLD, &sa, NULL);
+}
 
 int main(const int argc, char **argv)
 {
@@ -39,6 +75,7 @@ int main(const int argc, char **argv)
 
     parse_arguments(&ctx);
     handle_arguments(&ctx);
+    signal(SIGINT, handle_sigint);
     initialize_server(&ctx);
     create_children_pool(&ctx);
 
@@ -54,6 +91,7 @@ static server_context init_context(void)
     ctx.exit_code      = EXIT_SUCCESS;
     ctx.exit_message   = NULL;
     ctx.sockfd         = -1;
+    ctx.clientfd       = -1;
     return ctx;
 }
 
@@ -170,6 +208,7 @@ static void initialize_server(server_context *ctx)
 {
     struct sockaddr_in serv_addr;
     socklen_t          addr_len = sizeof(serv_addr);
+    int                opt      = 1;
 
     // Create socket
     ctx->sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -178,6 +217,12 @@ static void initialize_server(server_context *ctx)
         ctx->exit_message = "Socket creation failed";
         ctx->exit_code    = EXIT_FAILURE;
         quit(ctx);
+    }
+
+    // aalow restart of server
+    if(setsockopt(ctx->sockfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) == -1)
+    {
+        perror("setsockopt with SO_REUSEADDR failed");
     }
 
     // Set up server address structure
@@ -205,43 +250,77 @@ static void initialize_server(server_context *ctx)
     printf("Server listening on port %u\n", ctx->port);
 }
 
-static void create_children_pool(server_context *ctx) 
+static void spawn_worker(server_context *ctx, size_t index)
 {
-    for(size_t i = 0; i < MAX_NUM_CHILDREN; i++) 
+    pid_t pid = fork();
+    if(pid == 0)
     {
-        pid_t pid = fork();
-        if(pid == 0) 
+        // Child Logic
+        while(1)
         {
-            // CHILD PROCESS: Permanent worker loop
-            while(1) 
+            accept_client(ctx);
+            if(ctx->clientfd != -1)
             {
-                // accept_client must store the new fd in ctx->client_fd
-                accept_client(ctx); 
-
-                // Session loop for this specific client
-                while(1) 
+                while(1)
                 {
-                    read_input(ctx); 
-                    if(ctx->bytes_received <= 0) break; 
+                    read_input(ctx);
+                    if(ctx->bytes_received <= 0)
+                    {
+                        break;
+                    }
                     analyze_command(ctx);
+                    send(ctx->clientfd, "", 1, 0);
                 }
-                
-                close(ctx->client_fd); // Close only the client, keep listener
-                ctx->client_fd = -1;
+                close_session(ctx);
             }
-            exit(EXIT_SUCCESS); 
         }
-        else if(pid < 0) 
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        ctx->worker_pids[index] = pid;
+    }
+}
+
+static void replace_workers(server_context *ctx)
+{
+    pid_t dead;
+    int   status;
+
+    // Reap all dead children without blocking
+    while((dead = waitpid(-1, &status, WNOHANG)) > 0)
+    {
+        for(size_t i = 0; i < MAX_NUM_CHILDREN; i++)
         {
-            perror("Fork failed");
+            if(ctx->worker_pids[i] == dead)
+            {
+                printf("Worker %d died. Replacing...\n", dead);
+                spawn_worker(ctx, i);
+                break;
+            }
         }
     }
+}
 
-    // PARENT PROCESS: After forking, stay alive to reap dead children
-    while(1) 
+static void create_children_pool(server_context *ctx)
+{
+    setup_sigchld();
+
+    // Initial pool creation
+    for(size_t i = 0; i < MAX_NUM_CHILDREN; i++)
     {
-        int status;
-        wait(&status); 
+        spawn_worker(ctx, i);
+    }
+
+    // Parent management loop
+    while(1)
+    {
+        if(child_died)
+        {
+            child_died = 0;
+            replace_workers(ctx);    //
+        }
+        pause();    // Sleep until the next signal arrives
     }
 }
 
@@ -262,18 +341,18 @@ static void accept_client(server_context *ctx)
     ctx->clientfd = client_fd;
 
     printf("Client connected\n");
-    
 }
 
 static void read_input(server_context *ctx)
 {
     memset(ctx->user_input, 0, sizeof(ctx->user_input));
 
-    ctx->bytes_received = recv(ctx->sockfd, ctx->user_input, sizeof(ctx->user_input) - 1, 0);
+    ctx->bytes_received = recv(ctx->clientfd, ctx->user_input, sizeof(ctx->user_input) - 1, 0);
 
     if(ctx->bytes_received == 0)
     {
         // Client disconnected
+        printf("Client disconnected");
         return;
     }
 
@@ -288,32 +367,23 @@ static void read_input(server_context *ctx)
 
 static void analyze_command(server_context *ctx)
 {
-    char *cmd_copy = strdup(ctx->user_input);
-    if(cmd_copy == NULL)
-    {
-        // Handle error
-        return;
-    }
-
-    // Check for built-in commands first
+    // Check for built-in 'exit'
     if(strcmp(ctx->user_input, "exit") == 0)
     {
         run_builtin(ctx);
-        free(cmd_copy);
-        return;
+        return;    // Prevent fall-through to run_external
     }
 
-    if(strncmp(ctx->user_input, "cd ", 3) == 0)
+    // Check for built-in 'cd'
+    if(strncmp(ctx->user_input, "cd ", 3) == 0 || strcmp(ctx->user_input, "cd") == 0)
     {
         run_builtin(ctx);
-        free(cmd_copy);
-        return;
+        return;    // Prevent fall-through to run_external
     }
 
-    // External command
-    fork_process();
+    // External command: Remove the fork_process() call here.
+    // run_external handles its own fork.
     run_external(ctx);
-    free(cmd_copy);
 }
 
 static void run_builtin(server_context *ctx)
@@ -324,18 +394,32 @@ static void run_builtin(server_context *ctx)
         return;
     }
 
-    if(strncmp(ctx->user_input, "cd ", 3) == 0)
+    if(strncmp(ctx->user_input, "cd ", 2) == 0)
     {
-        char *dir = ctx->user_input + 3;
-        while(*dir == ' ') {
+        const char *dir = ctx->user_input + 2;
+        while(*dir == ' ')
+        {
             dir++;
         }
-                // Skip leading spaces
+        if(*dir == '\0')
+        {
+            dir = getenv("HOME");    // defauklt to home if no path given
+        }
+
+        if(dir == NULL)
+        {
+            const char *err = "cd: HOME not set\n";
+            write(ctx->clientfd, err, strlen(err));
+            return;
+        }
+
+        // Skip leading spaces
 
         if(chdir(dir) != 0)
         {
             perror("cd failed");
         }
+        return;
     }
 }
 
@@ -352,28 +436,142 @@ static int fork_process(void)
 
 static void run_external(server_context *ctx)
 {
-    // This is a simplified implementation
-    // In a full implementation, you would parse the command and arguments
-    // and handle redirection operators (<, >, 2>)
+    char  cmd_copy[USER_MESSAGE_BUFFER];
+    char *argv[MAX_ARGS];
+    char *in_file  = NULL;
+    char *out_file = NULL;
+    char *err_file = NULL;
+    int   argc;
+    pid_t pid;
+    int   status;
 
-    char *args[32];
-    int   arg_count = 0;
+    // working on copy so i dont destroy user input
+    strncpy(cmd_copy, ctx->user_input, sizeof(cmd_copy) - 1);
+    cmd_copy[sizeof(cmd_copy) - 1] = '\0';
 
-    // Simple parsing - in reality this would be more complex
-    char *token = strtok(ctx->user_input, " ");
-    while(token != NULL && arg_count < 31)
+    argc = parse_command(trim(cmd_copy), argv, MAX_ARGS, &in_file, &out_file, &err_file);
+
+    if(argc == 0)
     {
-        args[arg_count++] = token;
-        token             = strtok(NULL, " ");
+        return;    // nothing found in command
     }
-    args[arg_count] = NULL;
 
-    if(arg_count > 0)
+    // resolve executable path
+    char *path = find_path(argv[0]);
+    if(path == NULL)
     {
-        execvp(args[0], args);
-        // If execvp returns, it means it failed
-        perror("Command execution failed");
+        char msg[ERROR_MESSAGE_BUFFER];
+        int  n = snprintf(msg, sizeof(msg), "%s: command not found\n", argv[0]);
+        send(ctx->clientfd, msg, (size_t)n, 0);
+        return;
+    }
+
+    // replace first argument with full path
+    argv[0] = path;
+
+    pid = fork();
+    if(pid == -1)
+    {
+        perror("fork");
+        return;
+    }
+
+    if(pid == 0)
+    {
+        // grandchild that redirects the fds, then execs
+
+        // handling stdin redirection  (<)
+        if(in_file != NULL)
+        {
+            int fd = open(in_file, O_RDONLY | O_CLOEXEC);
+            if(fd == -1)
+            {
+                char msg[ERROR_MESSAGE_BUFFER];
+                snprintf(msg, sizeof(msg), "open %s: %s\n", in_file, strerror(errno));
+                write(ctx->clientfd, msg, strlen(msg));
+                exit(EXIT_FAILURE);
+            }
+            if(dup2(fd, STDIN_FILENO) == -1)
+            {
+                perror("dup2 stdin");
+                exit(EXIT_FAILURE);
+            }
+            close(fd);
+        }
+
+        // handling stdout redirection (>), if not redirected, send to client
+        if(out_file != NULL)
+        {
+            int fd = open(out_file, O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, FILE_PERMISSIONS);
+            if(fd == -1)
+            {
+                char msg[ERROR_MESSAGE_BUFFER];
+                snprintf(msg, sizeof(msg), "open %s: %s\n", out_file, strerror(errno));
+                write(ctx->clientfd, msg, strlen(msg));
+                exit(EXIT_FAILURE);
+            }
+            if(dup2(fd, STDOUT_FILENO) == -1)
+            {
+                perror("dup2 stdout");
+                exit(EXIT_FAILURE);
+            }
+            close(fd);
+        }
+        else
+        {
+            // handling no file redirect: sending stdout back over the socket
+            if(dup2(ctx->clientfd, STDOUT_FILENO) == -1)
+            {
+                perror("dup2 stdout→socket");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        // handling stderr redirection (2>)
+        if(err_file != NULL)
+        {
+            int fd = open(err_file, O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, FILE_PERMISSIONS);
+            if(fd == -1)
+            {
+                char msg[ERROR_MESSAGE_BUFFER];
+                snprintf(msg, sizeof(msg), "open %s: %s\n", err_file, strerror(errno));
+                write(ctx->clientfd, msg, strlen(msg));
+                exit(EXIT_FAILURE);
+            }
+            if(dup2(fd, STDERR_FILENO) == -1)
+            {
+                perror("dup2 stderr");
+                exit(EXIT_FAILURE);
+            }
+            close(fd);
+        }
+        else
+        {
+            // handling no file redirect: send stderr back over the socket too
+            if(dup2(ctx->clientfd, STDERR_FILENO) == -1)
+            {
+                perror("dup2 stderr→socket");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        //  grandchild no longer needs listening socket
+        close(ctx->sockfd);
+
+        execv(argv[0], argv);
+        // execv only returns on error//
+        {
+            char msg[ERROR_MESSAGE_BUFFER];
+            snprintf(msg, sizeof(msg), "execv %s: %s\n", argv[0], strerror(errno));
+            write(STDERR_FILENO, msg, strlen(msg));
+        }
         exit(EXIT_FAILURE);
+    }
+
+    // wait for grandchild
+    if(waitpid(pid, &status, 0) == -1)
+    {
+        perror("waitpid");
     }
 }
 
@@ -385,10 +583,11 @@ static void wait_for_child(pid_t pid)
 
 static void close_session(server_context *ctx)
 {
-    if(ctx->sockfd != -1)
+    if(ctx->clientfd != -1)
     {
-        close(ctx->sockfd);
-        ctx->sockfd = -1;
+        printf("closing client\n");
+        close(ctx->clientfd);
+        ctx->clientfd = -1;
     }
 }
 
@@ -396,28 +595,101 @@ static void close_server(server_context *ctx)
 {
     if(ctx->sockfd != -1)
     {
+        printf("closing server\n");
         close(ctx->sockfd);
         ctx->sockfd = -1;
     }
 }
 
-static char *find_path(const char *command) 
+static char *find_path(const char *command)
 {
-    static char full_path[1024];
+    static char full_path[PATH_BUFFER];
     const char *search_paths[] = {"/bin/", "/usr/bin/", "/usr/local/bin/", NULL};
 
-    if (command[0] == '/') 
+    if(command[0] == '/')
     {
         return (char *)command;
     }
 
-    for (int i = 0; search_paths[i] != NULL; i++) 
+    for(int i = 0; search_paths[i] != NULL; i++)
     {
         snprintf(full_path, sizeof(full_path), "%s%s", search_paths[i], command);
-        if (access(full_path, X_OK) == 0) 
+        if(access(full_path, X_OK) == 0)
         {
             return full_path;
         }
     }
     return NULL;
+}
+
+static char *trim(char *s)
+{
+    char *end;
+    while(*s == ' ' || *s == '\t')
+    {
+        s++;
+    }
+    if(*s == '\0')
+    {
+        return s;
+    }
+    end = s + strlen(s) - 1;
+    while(end > s && (*end == ' ' || *end == '\t'))
+    {
+        *end-- = '\0';
+    }
+    return s;
+}
+
+static int parse_command(char *cmd, char *argv[], int argv_max, char **in_file, char **out_file, char **err_file)
+{
+    char *saveptr = NULL;
+    char *token;
+    int   argc = 0;
+
+    *in_file  = NULL;
+    *out_file = NULL;
+    *err_file = NULL;
+
+    token = strtok_r(cmd, " \t", &saveptr);
+    while(token != NULL && argc < argv_max - 1)
+    {
+        if(strcmp(token, "<") == 0)
+        {
+            token = strtok_r(NULL, " \t", &saveptr);
+            if(token != NULL)
+            {
+                *in_file = token;
+            }
+        }
+        else if(strcmp(token, ">") == 0)
+        {
+            token = strtok_r(NULL, " \t", &saveptr);
+            if(token != NULL)
+            {
+                *out_file = token;
+            }
+        }
+        else if(strcmp(token, "2>") == 0)
+        {
+            token = strtok_r(NULL, " \t", &saveptr);
+            if(token != NULL)
+            {
+                *err_file = token;
+            }
+        }
+        else if(strncmp(token, "2>", 2) == 0 && token[2] != '\0')
+        {
+            /* handle "2>file" written without a space */
+            *err_file = token + 2;
+        }
+        else
+        {
+            argv[argc++] = token;
+        }
+
+        token = strtok_r(NULL, " \t", &saveptr);
+    }
+    argv[argc] = NULL;
+    return argc;
 }
