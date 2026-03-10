@@ -269,7 +269,7 @@ static void spawn_worker(server_context *ctx, size_t index)
                         break;
                     }
                     analyze_command(ctx);
-                    send(ctx->clientfd, "", 1, 0);
+                    send(ctx->clientfd, "", 1, MSG_NOSIGNAL);
                 }
                 close_session(ctx);
             }

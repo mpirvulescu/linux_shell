@@ -56,7 +56,7 @@ int main(const int argc, char **argv)
 
         send_request(&ctx);
         recv_response(&ctx);
-        print_output(&ctx);
+        // print_output(&ctx);
     }
 
     shutdown_socket(&ctx);
@@ -327,33 +327,52 @@ static void send_request(client_context *ctx)
 
 static void recv_response(client_context *ctx)
 {
-    // clear buffer to ensure no leftover data from previous commands
-    memset(ctx->server_output, 0, sizeof(ctx->server_output));
-
-    // recv() returns the number of bytes actually read
-    ctx->bytes_received = recv(ctx->sockfd, ctx->server_output, sizeof(ctx->server_output), 0);
-
-    if(ctx->bytes_received == 0)
+    // loop until receive \0 terminator from the server
+    while(1)
     {
-        // FIN signal, server is done
-        ctx->exit_message = "\nConnection closed by server.\n";
-        ctx->exit_code    = EXIT_SUCCESS;
-        quit(ctx);
-    }
+        memset(ctx->server_output, 0, sizeof(ctx->server_output));
+        ctx->bytes_received = recv(ctx->sockfd, ctx->server_output, sizeof(ctx->server_output), 0);
 
-    if(ctx->bytes_received == -1)
-    {
-        if(errno == EINTR)
+        if(ctx->bytes_received == 0)
         {
-            return;    // interrupted by signal, main loop will try again
+            // connection closed by server
+            ctx->exit_message = "\nConnection closed by server.\n";
+            ctx->exit_code    = EXIT_SUCCESS;
+            quit(ctx);
         }
-        ctx->exit_message = "Error: Failed to receive data from server.\n";
-        ctx->exit_code    = EXIT_FAILURE;
-        quit(ctx);
-    }
 
-    // Only print output after receiving complete response
-    print_output(ctx);
+        if(ctx->bytes_received == -1)
+        {
+            if(errno == EINTR)
+            {
+                continue;
+            }
+            ctx->exit_message = "Error: Failed to receive data from server.\n";
+            ctx->exit_code    = EXIT_FAILURE;
+            quit(ctx);
+        }
+
+        // search for end-of-command null terminator
+        int found_terminator = 0;
+        for(ssize_t i = 0; i < ctx->bytes_received; i++)
+        {
+            if(ctx->server_output[i] == '\0')
+            {
+                found_terminator = 1;
+                // Print everything UP TO the null byte
+                write(STDOUT_FILENO, ctx->server_output, (size_t)i);
+                break;
+            }
+        }
+
+        if(found_terminator)
+        {
+            break;    // found the EOT marker, command is complete
+        }
+
+        // No terminator yet, print chunk, keep looping
+        write(STDOUT_FILENO, ctx->server_output, (size_t)ctx->bytes_received);
+    }
 }
 
 static void print_output(client_context *ctx)
